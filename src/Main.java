@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(identificarEstado("KFG1234"));
+        System.out.println(identificarEstado("MCA"));
     }
 
     public static String identificarEstado(String placa) {
