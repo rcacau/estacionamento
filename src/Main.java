@@ -1,8 +1,12 @@
 import java.util.*;
 
+import static java.lang.Integer.min;
+import static java.lang.Integer.parseInt;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(identificarEstado("MCA"));
+        System.out.println(identificarEstado("MMN"));
+        System.out.println(calcularPrecoEstacionamento(220));
     }
 
     public static String identificarEstado(String placa) {
@@ -58,4 +62,32 @@ public class Main {
         }
         return false;
     }
+
+    private static int conversaoHorasParaMinutos(String entrada, String saida) {
+        int minutosEntrada = parseInt(entrada.split(":")[0]) * 60 + parseInt(entrada.split(":")[1]);
+        int minutosSaida = parseInt(saida.split(":")[0]) * 60 + parseInt(saida.split(":")[1]);
+        return minutosSaida - minutosEntrada;
+    }
+
+    private static double calcularPrecoEstacionamento(int minutosEstacionado) {
+        double taxaAdicional = 2.13; // m == 0.13 == (0 + 5 + 8) / 100
+        double precoTotal = 0.0;
+
+        if (minutosEstacionado <= 15) {
+            return precoTotal;
+        }
+
+        precoTotal = 10.0;
+
+        if (minutosEstacionado <= 180) {
+            return precoTotal;
+        }
+
+        int periodosExtras = (minutosEstacionado - 180) / 20;
+        double valorExtra = periodosExtras * (taxaAdicional + 2.0);
+        precoTotal += valorExtra;
+
+        return precoTotal;
+    }
+
 }
