@@ -6,7 +6,7 @@ import static java.lang.Integer.parseInt;
 public class Main {
     public static void main(String[] args) {
         System.out.println(identificarEstado("MMN"));
-        System.out.println(calcularPrecoEstacionamento(220));
+        System.out.println(calcularPrecoEstacionamento(400));
     }
 
     public static String identificarEstado(String placa) {
@@ -70,7 +70,7 @@ public class Main {
     }
 
     private static double calcularPrecoEstacionamento(int minutosEstacionado) {
-        double taxaAdicional = 2.13; // m == 0.13 == (0 + 5 + 8) / 100
+        double taxaAdicional = (double) 213 / 100; // m == 0.13 == (0 + 5 + 8) / 100
         double precoTotal = 0.0;
 
         if (minutosEstacionado <= 15) {
@@ -84,7 +84,7 @@ public class Main {
         }
 
         int periodosExtras = (minutosEstacionado - 180) / 20;
-        double valorExtra = periodosExtras * (taxaAdicional + 2.0);
+        double valorExtra = periodosExtras * (taxaAdicional);
         precoTotal += valorExtra;
 
         return precoTotal;
