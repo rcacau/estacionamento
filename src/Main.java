@@ -1,12 +1,30 @@
-import java.util.*;
+import java.util.Scanner;
 
-import static java.lang.Integer.min;
 import static java.lang.Integer.parseInt;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(identificarEstado("MMN"));
-        System.out.println(calcularPrecoEstacionamento(400));
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+            System.out.println("Digite '0' para encerrar.");
+
+            System.out.println("Digite a Placa do carro: ");
+            String placa = sc.nextLine().trim();
+            if(placa.equals("0")) break;
+
+            System.out.println("Digite a hora de entrada: ");
+            String entrada = sc.nextLine().trim();
+            if(entrada.equals("0")) break;
+
+            System.out.println("Digite a hora de saída: ");
+            String saida = sc.nextLine().trim();
+            if(saida.equals("0")) break;
+
+            String estado = identificarEstado(placa);
+            int minutosEstacionados = conversaoHorasParaMinutos(entrada, saida);
+            double preco = calcularPrecoEstacionamento(minutosEstacionados);
+            System.out.println("\nEstado: " + estado + "\nValor à pagar: " + preco + "\n");
+        }
     }
 
     public static String identificarEstado(String placa) {
