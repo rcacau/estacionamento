@@ -23,7 +23,7 @@ public class Main {
             String estado = identificarEstado(placa);
             int minutosEstacionados = conversaoHorasParaMinutos(entrada, saida);
             double preco = calcularPrecoEstacionamento(minutosEstacionados);
-            System.out.println("\nEstado: " + estado + "\nValor à pagar: " + preco + "\n");
+            System.out.println("\nEstado: " + estado + "\nValor à pagar: " + String.format("%.2f", preco) + "\n");
         }
     }
 
@@ -102,7 +102,7 @@ public class Main {
         }
 
         int periodosExtras = (minutosEstacionado - 180) / 20;
-        double valorExtra = periodosExtras * (taxaAdicional);
+        double valorExtra = (periodosExtras + 1) * (taxaAdicional);
         precoTotal += valorExtra;
 
         return precoTotal;
